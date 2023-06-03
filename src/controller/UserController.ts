@@ -35,7 +35,7 @@ export default class UserController {
 
 			if (userExists) throw new Error("User already exists")
 
-			const newUser = await this.usersRepository.create(user)
+			const newUser = await this.usersRepository.create({ ...user, booksSug: [] })
 
 			return res.status(201).json(newUser)
 
@@ -198,7 +198,7 @@ export default class UserController {
 					await this.usersRepository.update(sub, {
 						$push: { booksSug: recomendation?._id.toString() }
 					})
-
+					console.log(user.booksSug)
 					return res.status(200).json(recomendation)
 				}
 
