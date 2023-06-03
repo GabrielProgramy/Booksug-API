@@ -198,7 +198,7 @@ export default class UserController {
 					await this.usersRepository.update(sub, {
 						$push: { booksSug: recomendation?._id.toString() }
 					})
-					console.log(user.booksSug)
+
 					return res.status(200).json(recomendation)
 				}
 
